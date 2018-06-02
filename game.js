@@ -13,7 +13,7 @@ document.getElementById('nanners').value = bananas.toLocaleString();
 }
 
 function timer() {
-    update();
+    update()
 }
 
 setInterval(timer, 1000)
