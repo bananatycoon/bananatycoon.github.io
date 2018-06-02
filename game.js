@@ -8,7 +8,7 @@ function grow() {
 function update() { 
 
 document.title = bananas.toLocaleString() + " Bananas";
-document.getElementById('bananaCount').value = bananas.toLocaleString();
+document.getElementById('nanners').value = bananas.toLocaleString();
 
 }
 
