@@ -1,4 +1,10 @@
 
+// Variables
+
+var bananas = 0;
+var money = 0;
+var manualclick = 1;
+
 // Save/Load
 
     function save() {
@@ -54,8 +60,4 @@ function enhanceSoil() {
     }
 }
 
-// Variables
 
-var bananas = 0;
-var money = 0;
-var manualclick = 1;
