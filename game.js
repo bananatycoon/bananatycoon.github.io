@@ -7,6 +7,15 @@
         localStorage.setItem("money", money);
     }
 
+    function load() {
+        bananas = localStorage.getItem("bananas");
+        bananas = parseInt(bananas);
+        manualclick = localStorage.getItem("manualclick");
+        manualclick = parseInt(manualclick);
+        money = localStorage.getItem("money");
+        money = parseInt(money); 
+    }
+
 // Manual Clicking
 
 function grow() {
