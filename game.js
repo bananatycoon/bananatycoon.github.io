@@ -20,6 +20,10 @@ var manualclick = 1;
         manualclick = parseInt(manualclick);
         money = localStorage.getItem("money");
         money = parseInt(money); 
+        
+        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
+        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+
     }
 
 // Manual Clicking
