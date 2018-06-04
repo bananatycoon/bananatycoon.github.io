@@ -75,7 +75,7 @@ function enhanceSoil() {
 
 function purifyWater() {
     if(money >= 200) {
-        money - money - 200;
+        money = money - 200;
         manualclick = manualclick + 25;
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();        
