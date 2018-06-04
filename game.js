@@ -55,6 +55,15 @@ function sell50() {
     }
 }
 
+function sell1000() {
+    if(bananas >= 1000) {
+        bananas = bananas - 1000;
+        money = money + 250;
+        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
+        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+    }
+}
+
 function enhanceSoil() {
     if(money >= 50) {
         money = money - 50;
