@@ -1,9 +1,21 @@
 
+// Save/Load
+
+    function save() {
+        localStorage.setItem("bananas", bananas);
+        localStorage.setItem("manualclick", manualclick);
+        localStorage.setItem("money", money);
+    }
+
+// Manual Clicking
+
 function grow() {
     bananas = bananas + manualclick;
     document.getElementById("bananaCount").innerHTML = "Bananas: " + bananas.toLocaleString();
 
 }
+
+// Upgrades
 
 function sell20() {
     if(bananas >= 20) {
@@ -32,6 +44,8 @@ function enhanceSoil() {
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();        
     }
 }
+
+// Variables
 
 var bananas = 0;
 var money = 0;
