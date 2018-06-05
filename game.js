@@ -99,3 +99,12 @@ function purifyWater() {
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();        
     }
 }
+
+function expandFarms() {
+    if(money >= 10000) {
+        money = money - 10000;
+        manualclick = manualclick + 500;
+        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
+        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+    }
+}
