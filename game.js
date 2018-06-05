@@ -108,3 +108,12 @@ function expandFarms() {
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
     }
 }
+
+function hireMarketing() {
+    if(money >= 100000) {
+        money = money - 100000;
+        manualclick = manualclick + 1500;
+        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
+        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+    }
+}
