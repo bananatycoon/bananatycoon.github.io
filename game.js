@@ -64,6 +64,24 @@ function sell1000() {
     }
 }
 
+function sell10k() {
+   if(bananas >= 10000) {
+        bananas = bananas - 10000;
+        money = money + 3000;
+        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
+        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+   }
+}
+
+function sell100k() {
+    if(bananas >= 100000) {
+        bananas = bananas - 100000;
+        money = money + 50000;
+        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
+        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+    }
+}
+
 function enhanceSoil() {
     if(money >= 50) {
         money = money - 50;
