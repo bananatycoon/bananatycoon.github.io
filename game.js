@@ -131,7 +131,7 @@ function expandFarms() {
 function hireMarketing() {
     if(money >= 100000) {
         money = money - 100000;
-        manualclick = manualclick + 1500;
+        manualclick = manualclick + 20000;
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
         document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
