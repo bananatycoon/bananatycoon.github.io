@@ -23,6 +23,7 @@ var manualclick = 1;
         
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
 
     }
 
@@ -31,7 +32,8 @@ var manualclick = 1;
 function grow() {
     bananas = bananas + manualclick;
     document.getElementById("bananaCount").innerHTML = "Bananas: " + bananas.toLocaleString();
-
+    document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+    
 }
 
 // Upgrades
@@ -42,6 +44,7 @@ function sell20() {
         money = money + 5;
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
 
     }
 }
@@ -61,6 +64,7 @@ function sell1000() {
         money = money + 250;
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
     }
 }
 
@@ -70,6 +74,7 @@ function sell10k() {
         money = money + 3000;
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
    }
 }
 
@@ -79,6 +84,7 @@ function sell100k() {
         money = money + 50000;
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
     }
 }
 
@@ -87,7 +93,9 @@ function enhanceSoil() {
         money = money - 50;
         manualclick = manualclick + 5;
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();        
+        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();   
+        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+
     }
 }
 
@@ -97,6 +105,7 @@ function purifyWater() {
         manualclick = manualclick + 25;
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();        
+        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
     }
 }
 
@@ -106,6 +115,7 @@ function expandFarms() {
         manualclick = manualclick + 500;
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
     }
 }
 
@@ -115,5 +125,6 @@ function hireMarketing() {
         manualclick = manualclick + 1500;
         document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
         document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
     }
 }
