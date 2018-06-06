@@ -38,6 +38,15 @@ function grow() {
 
 // Upgrades
 
+function sellAll() {
+    money = money + (bananas * .25);
+    bananas = bananas - bananas;
+    
+    document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
+    document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+    document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+}   
+
 function sell20() {
     if(bananas >= 20) {
         bananas = bananas - 20;
