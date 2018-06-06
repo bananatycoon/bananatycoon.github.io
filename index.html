@@ -38,6 +38,11 @@
     body {
         padding: 20px;
     }
+  
+  .yellow {
+   background-color: #FFFF00;
+   color: #000;
+  }
 </style>
 
 </head>
@@ -51,7 +56,7 @@
   <div><span id="moneyCount">Money: $0</span></div>
         <div><span id="harvestCount">Bananas Per Harvest: 1</span></div>
         <br />
-  <button onclick="grow()">Harvest Bananas</button><br>
+  <button class="btn btn-primary yellow" onclick="grow()">Harvest Bananas</button><br>
         <button onclick="sellAll()">Sell All Bananas</button>        
 
 </div><hr>
