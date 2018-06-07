@@ -137,3 +137,13 @@ function hireMarketing() {
         document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
     }
 }
+
+function buySmallerFarm() {
+    if(money >= 1000000) {
+        money = money - 1000000;
+        manualclick = manualclick + 75000;
+        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
+        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+    }
+}
