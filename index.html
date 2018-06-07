@@ -43,11 +43,24 @@
    background-color: #FFFF00;
    color: #000;
   }
+  
+  #scrolling-thing {
+    display: flex;
+    overflow: auto;
+  }
+  
+  #non-scrolling-thing {
+    display: flex;
+    overflow: hidden;
+ 
+  }
+  
 </style>
 
 </head>
   <body class="bg-secondary" align="center">
        <script src="game.js"></script>
+    <div class="non-scrolling-thing">
  <button class="btn btn-outline-light" style="margin:5px;" onclick="save()">Save</button><button class="btn btn-outline-light" style="margin:5px;" onclick="load()">Load</button>
  <div align="center">
 
@@ -59,8 +72,8 @@
         <button class="btn btn-outline-light" data-toggle="tooltip" data-placement="bottom" title="4 Bananas = $1" onclick="sellAll()">Sell All Bananas</button>        
 
 </div><hr>
-    
-    
+    </div>
+<div id="scrolling-thing">    
     
       <div align="center" style="width: 50%; margin: 0 auto;">
       <div style="float: left; padding: 30px;">
@@ -83,7 +96,7 @@
                     
       </div>
                     
-    
+    </div>
     
   
 
