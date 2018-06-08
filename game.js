@@ -7,6 +7,12 @@ var bananasPerSecond = 0;
 var monkeyCost = 10;
 var gorillaCost = 100;
 
+function prettify(input){
+    var output = Math.round(input * 1000000)/1000000;
+	return output;
+}
+
+
 function update() {
     document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
     document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
@@ -144,7 +150,7 @@ function hireMonkey() {
     if (money >= monkeyCost) {
         money = money - monkeyCost;
         bananasPerSecond = bananasPerSecond + 1;
-        monkeyCost = monkeyCost * 1.1;
+        monkeyCost = prettify(monkeyCost * 1.1);
         update()
     }
 }
@@ -153,7 +159,7 @@ function hireGorilla() {
     if (money >= gorillaCost) {
         money = money - gorillaCost;
         bananasPerSecond = bananasPerSecond + 5;
-        gorillaCost = gorillaCost * 1.1;
+        gorillaCost = prettify(gorillaCost * 1.1);
         update()
     }
 }
