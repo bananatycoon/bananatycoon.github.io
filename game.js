@@ -1,9 +1,21 @@
-
 // Variables
 
 var bananas = 0;
 var money = 0;
 var manualclick = 1;
+var bananasPerSecond = 0;
+var monkeyCost = 10;
+var gorillaCost = 100;
+
+function update() {
+    document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
+    document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+    document.getElementById("harvestCount").innerHTML = "BPH: " + manualclick.toLocaleString();
+    document.getElementById("bpsCount").innerHTML = "BPS: " + bananasPerSecond.toLocaleString();
+    document.getElementById("hireMonkey").innerHTML = "Monkey - " + "($" + monkeyCost.toLocaleString() + ")";
+    document.getElementById("hireGorilla").innerHTML = "Gorilla - " + "($" + gorillaCost.toLocaleString() + ")";
+
+}
 
 // Save/Load
 
@@ -11,6 +23,7 @@ var manualclick = 1;
         localStorage.setItem("bananas", bananas);
         localStorage.setItem("manualclick", manualclick);
         localStorage.setItem("money", money);
+        localStorage.setItem("bananasPerSecond", bananasPerSecond);
     }
 
     function load() {
@@ -20,20 +33,16 @@ var manualclick = 1;
         manualclick = parseInt(manualclick);
         money = localStorage.getItem("money");
         money = parseInt(money); 
-        
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
-        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
-
+        bananasPerSecond = localStorage.getItem("bananasPerSecond");
+        bananasPerSecond = parseInt(bananasPerSecond);
+        update()
     }
 
 // Manual Clicking
 
 function grow() {
     bananas = bananas + manualclick;
-    document.getElementById("bananaCount").innerHTML = "Bananas: " + bananas.toLocaleString();
-    document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
-    
+    update()
 }
 
 // Upgrades
@@ -41,20 +50,14 @@ function grow() {
 function sellAll() {
     money = money + (bananas * .25);
     bananas = bananas - bananas;
-    
-    document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-    document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
-    document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+    update()
 }   
 
 function sell20() {
     if(bananas >= 20) {
         bananas = bananas - 20;
         money = money + 5;
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
-        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
-
+        update()
     }
 }
 
@@ -62,8 +65,7 @@ function sell50() {
     if(bananas >= 50) {
         bananas = bananas - 50;
         money = money + 12;
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
+        update()
     }
 }
 
@@ -71,9 +73,7 @@ function sell1000() {
     if(bananas >= 1000) {
         bananas = bananas - 1000;
         money = money + 250;
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
-        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+        update()
     }
 }
 
@@ -81,9 +81,7 @@ function sell10k() {
    if(bananas >= 10000) {
         bananas = bananas - 10000;
         money = money + 3000;
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
-        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+        update()
    }
 }
 
@@ -91,9 +89,7 @@ function sell100k() {
     if(bananas >= 100000) {
         bananas = bananas - 100000;
         money = money + 50000;
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
-        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+        update()
     }
 }
 
@@ -101,10 +97,7 @@ function enhanceSoil() {
     if(money >= 50) {
         money = money - 50;
         manualclick = manualclick + 5;
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();   
-        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
-
+        update()
     }
 }
 
@@ -112,9 +105,7 @@ function purifyWater() {
     if(money >= 200) {
         money = money - 200;
         manualclick = manualclick + 25;
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();        
-        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+        update()
     }
 }
 
@@ -122,9 +113,7 @@ function expandFarms() {
     if(money >= 10000) {
         money = money - 10000;
         manualclick = manualclick + 500;
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
-        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+        update()
     }
 }
 
@@ -132,9 +121,7 @@ function hireMarketing() {
     if(money >= 100000) {
         money = money - 100000;
         manualclick = manualclick + 20000;
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
-        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+        update()
     }
 }
 
@@ -142,8 +129,31 @@ function buySmallerFarm() {
     if(money >= 1000000) {
         money = money - 1000000;
         manualclick = manualclick + 75000;
-        document.getElementById("moneyCount").innerHTML = "Money: " + "$" + money.toLocaleString();
-        document.getElementById("bananaCount").innerHTML = "Bananas: " +  bananas.toLocaleString();
-        document.getElementById("harvestCount").innerHTML = "Bananas Per Harvest: " + manualclick.toLocaleString();
+        update()
     }
 }
+
+function hireMonkey() {
+    if (money >= monkeyCost) {
+        money = money - monkeyCost;
+        bananasPerSecond = bananasPerSecond + 1;
+        monkeyCost = monkeyCost * 1.1;
+        update()
+    }
+}
+
+function hireGorilla() {
+    if (money >= gorillaCost) {
+        money = money - gorillaCost;
+        bananasPerSecond = bananasPerSecond + 5;
+        gorillaCost = gorillaCost * 1.1;
+        update()
+    }
+}
+
+// Updater 9000
+
+window.setInterval(function(){
+    bananas = bananas + bananasPerSecond;
+    update()
+}, 1000);
