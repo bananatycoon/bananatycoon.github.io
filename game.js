@@ -47,7 +47,7 @@ function update() {
         monkeyCost = localStorage.getItem("monkeyCost");
         monkeyCost = parseInt(monkeyCost);
         gorillaCost = localStorage.getItem("gorillaCost");
-        monkeyCost = parseInt(gorillaCost);
+        gorillaCost = parseInt(gorillaCost);
         update()
     }
 
