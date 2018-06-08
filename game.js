@@ -24,6 +24,9 @@ function update() {
         localStorage.setItem("manualclick", manualclick);
         localStorage.setItem("money", money);
         localStorage.setItem("bananasPerSecond", bananasPerSecond);
+        localStorage.setItem("monkeyCost", monkeyCost);
+        localStorage.setItem("gorillaCost", gorillaCost);
+    
     }
 
     function load() {
@@ -35,6 +38,10 @@ function update() {
         money = parseInt(money); 
         bananasPerSecond = localStorage.getItem("bananasPerSecond");
         bananasPerSecond = parseInt(bananasPerSecond);
+        monkeyCost = localStorage.getItem("monkeyCost");
+        monkeyCost = parseInt(monkeyCost);
+        gorillaCost = localStorage.getItem("gorillaCost");
+        monkeyCost = parseInt(gorillaCost);
         update()
     }
 
