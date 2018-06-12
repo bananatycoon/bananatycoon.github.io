@@ -1,166 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-
-          <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120474300-1"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-120474300-1');
-      </script>
-
-    <title>Banana Tycoon</title>
-
-    <script src="game.js"></script>
-
-    <!-- Bootstrap Stuff -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<html>
+    <head>
+<title>Banana Tycoon v2.0</title>
+<!-- Main Game JS -->
+<script src="game.js"></script>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+<!-- Make Tooltips Work Properly -->
+<script>
+        $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip(); 
+      });
+    </script>
+</head>
 
 
+    <body>
+            <nav class="navbar fixed-top navbar-expand-sm bg-dark justify-content-center">
+                <ul class="navbar-nav">    
+                    <li class="navbar-item">
+                    <span id="bananaCount" class="nav-link text-light">Bananas: 0</span>
+                        </li>
+                    <li class="navbar-item">
+                    <span id="moneyCount" class="nav-link text-light">Money: $0</span>
+                        </li>
+                    <li class="navbar-item">
+                        <span id="perClickCount" data-toggle="tooltip" data-placement="bottom" title="Bananas Per Click" class="nav-link text-light">BPC: 1</span>
+                    </li>
+                    <li class="navbar-item">
+                        <span id="perSecondCount" data-toggle="tooltip" data-placement="bottom" title="Bananas Per Second" class="nav-link text-light">BPS: 0 </span>
+                    </li>
+                </ul>
+                  </nav>
 
-    <!-- Custom styles for this template -->
-    <link href="css/scrolling-nav.css" rel="stylesheet">
+</nav>
+<div class="container" style="margin-top:5%;">
+<div class="row justify-content-center">
+        <button onmousedown="harvest()" class="btn btn-warning"><img style="width:25%;" src="banana.png" /><br>Harvest Bananas</button>
+</div>
+<div class="row justify-content-center">
+<button style="margin-top:1%;" id="sellAll" onmousedown="sellAll()" class="btn btn-primary btn-sm">Sell All Bananas</button>
+</div>
+</div>
 
-
-    <script>
-    $(document).ready(function(){
-      $('[data-toggle="tooltip"]').tooltip(); 
-  });
-</script>
-
-      <!-- Other Styling Shit -->
-
-      <style>
-      
-        footer {
-          bottom:0;
-          width:100%;
-
-        }
-      
-      body {
-        padding-top: 8%;
-      }
-
-      .yellow {
-        background-color: yellow;
-        color: black;
-        cursor: url(banana.png), auto;
-      }
-
-      .yellow:active {
-        color: white;
-        outline: none; !important
-
-      }
-      </style>
-
-   
-
-  </head>
-
-  <body id="page-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <div class="container" align="center">
-        <button class="btn btn-primary yellow" onclick="grow()">Harvest Bananas</button><br><button class="btn btn-primary yellow" onclick="sellAll()">Sell All Bananas</button>
-
-
-
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <h3 style="margin:10px;" class="text-light" id="bananaCount">Bananas: 0</h3>
-            </li>
-            <li class="nav-item">
-              <h3 style="margin:10px;" class="text-light" id="moneyCount">Money: $0</h3>
-            </li>
-            <li class="nav-item">
-              <h3 style="margin:10px;" class="text-light" id="harvestCount">BPH: 1</h3>
-            </li>
-            <li class="nav-item">
-              <h3 style="margin:10px;" class="text-light" id="bpsCount">BPS: 0</h3>
-            </li>
-            <li>
-                <button style="margin-top:10px;" class="btn btn-sm btn-outline-light" onclick="save()">Save</button>
-                <button style="margin-top:10px;" class="btn btn-sm btn-outline-light" onclick="load()">Load</button>
-              </div>        
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-
-<!-- So Much Stuff -->
-
-  <div class="container">
+<div style="margin-top:1%;" class="container">
     <div class="row">
-      <div style="margin:25px;" class="col-sm">
-        <h1 align="center" class="text-dark">Sell Bananas</h1>
-  <button class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="bottom" title="Sell 20 Bananas for $5" onclick="sell20()">Sell Bundle of Bananas</button><br>
-  <button class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="bottom" title="Sell 50 Bananas for $12" onclick="sell50()">Sell Container of Bananas</button><br>
-  <button class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="bottom" title="Sell 1,000 Bananas for $250" onclick="sell1000()">Sell Crate of Bananas</button><br>
-  <button class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="bottom" title="Sell 10,000 Bananas for $3,000" onclick="sell10k()">Sell Shipment of Bananas</button><br>
-  <button class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="bottom" title="Sell 100,000 Bananas for $50,000" onclick="sell100k()">Sell Supply Drop of Bananas</button><br>    
-      </div>
-      <div style="margin:25px;" class="col-sm">
-        <h1 align="center" class="text-dark">Buy Upgrades</h1>
-      <button class="btn btn-dark btn-block"  data-toggle="tooltip" data-placement="bottom" title="Gain an additional 5 Bananas Per Harvest!" onclick="enhanceSoil()">Enhance Soil ($50)</button><br>
-      <button class="btn btn-dark btn-block"  data-toggle="tooltip" data-placement="bottom" title="Gain an additional 25 Bananas Per Harvest!" onclick="purifyWater()">Purify Water Source ($200)</button><br>
-      <button class="btn btn-dark btn-block"  data-toggle="tooltip" data-placement="bottom" title="Gain an additional 500 Bananas Per Harvest!" onclick="expandFarms()">Expand Farms ($10,000)</button><br>
-      <button class="btn btn-dark btn-block"  data-toggle="tooltip" data-placement="bottom" title="Gain an additional 20,000 Bananas Per Harvest!" onclick="hireMarketing()">Hire Marketing ($100,000)</button><br>
-      <button class="btn btn-dark btn-block"  data-toggle="tooltip" data-placement="bottom" title="Gain an additional 75,000 Bananas Per Harvest!" onclick="buySmallerFarm()">Buy A Smaller Farm ($1,000,000)</button><br>
-           </div>
-      <div style="margin:25px;" class="col-sm">
-        <h1 align="center" class="text-dark">Hire Employees</h1>
-      <button id="hireMonkey" class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="bottom" title="Automatically Harvests 1 Banana Per Second!" onclick="hireMonkey()">Monkey - ($10)</button>
-      <button id="hireGorilla" class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="bottom" title="Automatically Harvests 5 Bananas Per Second!" onclick="hireGorilla()">Gorilla - ($100)</button>
+        <div class="col-sm">
+            <h1 align="center">Sell Bananas</h1>
+            <button onmousedown="sellBundle()" class="btn btn-block btn-info">Bundle of Bananas<br>Sell 20 Bananas for $5</button>
+            <button onmousedown="sellContainer()" class="btn btn-block btn-info">Container of Bananas<br>Sell 50 Bananas for $15</button>
+            <button onmousedown="sellCrate()" class="btn btn-block btn-info">Crate of Bananas<br>Sell 1k Bananas for $320</button>
+            <button onmousedown="sellShipment()" class="btn btn-block btn-info">Shipment of Bananas<br>Sell 10k Bananas for $3.5k</button>
+            <button onmousedown="sellSurplus()" class="btn btn-block btn-info">Surplus of Bananas<br>Sell 100k Bananas for $40k</button>
+        </div>
+        <div class="col-sm">
+            <h1 align="center">Buy Upgrades</h1>
+            <button onmousedown="enhanceSoil()" class="btn btn-block btn-success">Enhance Soil<br><span id="enhanceSoil">Price: $50</span> +5 BPC</button>
+            <button onmousedown="purifyWater()" class="btn btn-block btn-success">Purify Water<br><span id="purifyWater">Price: $1,000</span> +50 BPC</button>
+            <button onmousedown="expandFarms()" class="btn btn-block btn-success">Expand Farms<br><span id="expandFarms">Price: $10,000</span> +500 BPC</button>
+            <button onmousedown="createBillboards()" class="btn btn-block btn-success">Create Billboards<br><span id="createBillboards">Price: $100,000</span> +20k BPS</button>
+            <button onmousedown="buySmallerFarm()" class="btn btn-block btn-success">Buy Out a Smaller Farm<br><span id="buySmallerFarm">Price: $1,000,000</span> +75k BPS</button>
+        </div>
+        <!--<div class="col-sm">
+            <h1>Hire Employees</h1>
+        </div> -->
     </div>
-      </div>
+    <div style="margin-top:2%" class="container">
+    <div class="row">
+        <div align="center" class="col-sm">
+            <button onmousedown="save()" class="btn btn-danger">Save</button>
+            <button onmousedown="load()" class="btn btn-danger">Load</button>
+        </div>
     </div>
-  </div>
+    <div class="row">
+        <div class="col-sm" align="center">
+        <p><i>You can't hold enter anymore, nerds!</i></p>
+        </div>
+    </div>
+    </div>
+</div>
+    </body>
 
-
-
-
-
-
-
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white"><a target="_blank" href="https://goo.gl/forms/ifWk0PVK8ceSdCZn1">Feedback & Feature Requests</a><br/> Hi, Elijah.</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom JavaScript for this theme -->
-    <script src="js/scrolling-nav.js"></script>
-
-  </body>
 
 </html>
