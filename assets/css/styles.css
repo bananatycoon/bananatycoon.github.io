@@ -1,0 +1,52 @@
+#click {
+  cursor: pointer;
+  transition: 0.03s linear;
+}
+
+.upgrade {
+  margin-top: 1rem;
+}
+
+.upgrade:hover {
+}
+
+#plus {
+  position: absolute;
+  pointer-events: none;
+}
+
+#row2 {
+  /*margin-top: .5rem;*/
+}
+
+#saverow {
+  margin-top: 1rem;
+}
+
+#loadrow {
+  margin-top: 1rem;
+}
+
+.pop {
+  position: fixed;
+  pointer-events: none;
+}
+
+#achievement {
+}
+
+#achievement {
+  display: none;
+}
+
+#achievementrow {
+  margin-top: 2rem;
+}
+
+.card-body {
+  user-select: none;
+}
+
+img {
+}
+

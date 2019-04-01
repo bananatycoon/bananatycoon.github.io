@@ -1,87 +1,171 @@
-<html>
-    <head>
-<title>Banana Tycoon v2.0</title>
-<!-- Main Game JS -->
-<script src="game.js"></script>
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-<!-- Make Tooltips Work Properly -->
-<script>
-        $(document).ready(function(){
-          $('[data-toggle="tooltip"]').tooltip(); 
-      });
-    </script>
+<!DOCTYPE html>
+<html style="font-family: monospace;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>b</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-
-    <body>
-            <nav class="navbar fixed-top navbar-expand-sm bg-dark justify-content-center">
-                <ul class="navbar-nav">    
-                    <li class="navbar-item">
-                    <span id="bananaCount" class="nav-link text-light">Bananas: 0</span>
-                        </li>
-                    <li class="navbar-item">
-                    <span id="moneyCount" class="nav-link text-light">Money: $0</span>
-                        </li>
-                    <li class="navbar-item">
-                        <span id="perClickCount" data-toggle="tooltip" data-placement="bottom" title="Bananas Per Click" class="nav-link text-light">BPC: 1</span>
-                    </li>
-                    <li class="navbar-item">
-                        <span id="perSecondCount" data-toggle="tooltip" data-placement="bottom" title="Bananas Per Second" class="nav-link text-light">BPS: 0 </span>
-                    </li>
-                </ul>
-                  </nav>
-
-</nav>
-<div class="container" style="margin-top:5%;">
-<div class="row justify-content-center">
-        <button onmousedown="harvest()" class="btn btn-warning"><img style="width:25%;" src="banana.png" /><br>Harvest Bananas</button>
-</div>
-<div class="row justify-content-center">
-<button style="margin-top:1%;" id="sellAll" onmousedown="sellAll()" class="btn btn-primary btn-sm">Sell All Bananas</button>
-</div>
-</div>
-
-<div style="margin-top:1%;" class="container">
-    <div class="row">
-        <div class="col-sm">
-            <h1 align="center">Sell Bananas</h1>
-            <button onmousedown="sellBundle()" class="btn btn-block btn-info">Bundle of Bananas<br>Sell 20 Bananas for $5</button>
-            <button onmousedown="sellContainer()" class="btn btn-block btn-info">Container of Bananas<br>Sell 50 Bananas for $15</button>
-            <button onmousedown="sellCrate()" class="btn btn-block btn-info">Crate of Bananas<br>Sell 1k Bananas for $320</button>
-            <button onmousedown="sellShipment()" class="btn btn-block btn-info">Shipment of Bananas<br>Sell 10k Bananas for $3.5k</button>
-            <button onmousedown="sellSurplus()" class="btn btn-block btn-info">Surplus of Bananas<br>Sell 100k Bananas for $40k</button>
+<body style="user-select: none;" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <div class="container" style="margin-top: 2rem;">
+        <div class="row">
+            <div class="col" id="activity" style="height: 100%;">
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <h1 class="text-center">Bananas:<br><span id="bananas">0</span><br></h1>
+                            </div>
+                        </div>
+                        <div id="clickarea" style="vertical-align: middle;width: 100%;"><img src="assets/img/banana@3x.png" id="click" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col bg-light" id="generators" style="height: 50rem;/*border-radius: 25px;*/" data-simplebar="">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="text-left">Generators</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Per Second</h3>
+                            </div>
+                        </div>
+                        <div class="row upgrade" id="fertilizer" style="margin-top: 1rem;">
+                            <div class="col">
+                                <div class="card" id="1_card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Fertilizer</h4>
+                                        <h6 class="text-muted card-subtitle mb-2">+0.2 BPS</h6>
+                                        <p class="card-text">Cost: <span id="fert_cost">10</span>&nbsp;Bananas</p>
+                                        <p class="card-text">Count: <span id="1_count">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row upgrade" id="enhancesoil" style="margin-top: 1rem;">
+                            <div class="col">
+                                <div class="card" id="2_card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Enhance Soil</h4>
+                                        <h6 class="text-muted card-subtitle mb-2">+5.0 BPS</h6>
+                                        <p class="card-text">Cost: <span id="soil_cost">250</span>&nbsp;Bananas</p>
+                                        <p class="card-text">Count: <span id="2_count">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row upgrade" id="expandfarm" style="margin-top: 1rem;">
+                            <div class="col">
+                                <div class="card" id="3_card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Expand Farm</h4>
+                                        <h6 class="text-muted card-subtitle mb-2">+50.0 BPS</h6>
+                                        <p class="card-text">Cost: <span id="expand_cost">1,500</span>&nbsp;Bananas</p>
+                                        <p class="card-text">Count: <span id="3_count">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Per Click</h3>
+                            </div>
+                        </div>
+                        <div class="row upgrade" id="shinytools" style="margin-top: 1rem;">
+                            <div class="col">
+                                <div class="card" id="c1_card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Shinier Tools</h4>
+                                        <h6 class="text-muted card-subtitle mb-2">+1 BPC</h6>
+                                        <p class="card-text">Cost: <span id="shiny_cost">100</span>&nbsp;Bananas</p>
+                                        <p class="card-text">Count: <span id="c1_count">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row upgrade" id="raise" style="margin-top: 1rem;">
+                            <div class="col">
+                                <div class="card" id="c2_card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Give Workers Raises</h4>
+                                        <h6 class="text-muted card-subtitle mb-2">+10 BPC</h6>
+                                        <p class="card-text">Cost: <span id="raise_cost">600</span>&nbsp;Bananas</p>
+                                        <p class="card-text">Count: <span id="c2_count">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" id="stats">
+                <div class="row">
+                    <div class="col">
+                        <h1>Stats</h1>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1rem;">
+                    <div class="col">
+                        <h3>Per Click: <span id="bpc">1</span></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3>Per Second:&nbsp;<span id="bps">0</span></h3>
+                    </div>
+                </div>
+                <div class="row" id="saverow">
+                    <div class="col"><button class="btn btn-success btn-block btn-lg" type="button" id="save">Save</button></div>
+                </div>
+                <div class="row" id="loadrow">
+                    <div class="col"><button class="btn btn-success btn-block btn-lg" type="button" id="load">Load</button></div>
+                </div>
+                <div class="row" id="achievementrow">
+                    <div class="col">
+                        <div class="card" id="achievementnotif" style="height: 10rem;">
+                            <div class="card-body">
+                                <h4 class="card-title">Achievements</h4>
+                                <h1>Soon...</h1>
+                                <div class="alert alert-success" role="alert" id="achievement"><span><strong>Achievement:&nbsp;</strong></span><span id="ach_text">???</span><button class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-sm">
-            <h1 align="center">Buy Upgrades</h1>
-            <button onmousedown="enhanceSoil()" class="btn btn-block btn-success">Enhance Soil<br><span id="enhanceSoil">Price: $50</span> +5 BPC</button>
-            <button onmousedown="purifyWater()" class="btn btn-block btn-success">Purify Water<br><span id="purifyWater">Price: $1,000</span> +50 BPC</button>
-            <button onmousedown="expandFarms()" class="btn btn-block btn-success">Expand Farms<br><span id="expandFarms">Price: $10,000</span> +500 BPC</button>
-            <button onmousedown="createBillboards()" class="btn btn-block btn-success">Create Billboards<br><span id="createBillboards">Price: $100,000</span> +20k BPS</button>
-            <button onmousedown="buySmallerFarm()" class="btn btn-block btn-success">Buy Out a Smaller Farm<br><span id="buySmallerFarm">Price: $1,000,000</span> +75k BPS</button>
-        </div>
-        <!--<div class="col-sm">
-            <h1>Hire Employees</h1>
-        </div> -->
-    </div>
-    <div style="margin-top:2%" class="container">
-    <div class="row">
-        <div align="center" class="col-sm">
-            <button onmousedown="save()" class="btn btn-danger">Save</button>
-            <button onmousedown="load()" class="btn btn-danger">Load</button>
+        <div class="modal fade" role="dialog" tabindex="-1" id="firstLoad">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Welcome To Banana Tycoon (Version: ???)</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <div class="modal-body">
+                        <p>Woah! An actual update? Wait! Don't go into shock <em>just </em>yet. I'm aware that it's been around a year since I've shown this little project any love and that's my bad. If you know me in real life you know I've been doing a
+                            bunch of other - equally stupid - stuff.&nbsp;<br><br>So... this looks different. You're right, it does. That's because it is. Upgrade names are the same for the most part, but, other than that and the general concept, pretty
+                            much everything has been changed or updated. The largest change is probably the addition of per second gaining and, I have to say, this should have been a day one addition. Another major thingy is just general code cleaning
+                            although that's not interesting to anybody but me. There's now a big ol' banana to click which is fun too. Saving and loading works better, there're more animations and graphics. It also works on mobile now!<br><br>That's the
+                            general gist, I guess. Once you close this window it won't be in your way again thanks to the wonders of &nbsp; t e c h n o l o g y™. Have fun!</p>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm" align="center">
-        <p><i>You can't hold enter anymore, nerds!</i></p>
-        </div>
-    </div>
-    </div>
-</div>
-    </body>
-
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/game.js"></script>
+    <script src="https://cdn.rawgit.com/erosson/swarm-numberformat/v0.4.0/dist/swarm-numberformat.min.js"></script>
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.js"></script>
+</body>
 
 </html>
