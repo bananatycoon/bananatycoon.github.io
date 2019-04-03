@@ -46,6 +46,7 @@ $(function(){
         
         localStorage.setItem("hasLoadedBefore", true);
     }
+        load()
 }
     
     
@@ -62,7 +63,8 @@ $( ".card" ).hover(
         localStorage.setItem("upgrades",JSON.stringify(upgrades));
     })
     
-    $('#load').click(function(){
+    
+   function load() {
         var savegame = JSON.parse(localStorage.getItem("game"));
         var saveupgrades = JSON.parse(localStorage.getItem("upgrades"));
 
@@ -78,9 +80,14 @@ $( ".card" ).hover(
 
         
         
-        
         update()
+   }
+    
+    
+    $('#load').click(function(){
 
+        load()
+        
     })
     
     function update() {
