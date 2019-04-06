@@ -143,6 +143,9 @@
                 <div class="row" id="loadrow">
                     <div class="col"><button class="btn btn-success btn-block btn-lg" type="button" id="load">Load</button></div>
                 </div>
+                <div class="row" id="clearsaverow">
+                    <div class="col"><button class="btn btn-danger btn-block btn-lg" type="button" id="clearsavebtn" data-toggle="modal" data-target="#clearsave">Clear Save</button></div>
+                </div>
                 <div class="row" id="autosaverow" style="display:none;">
                     <div class="col"><button class="btn btn-outline-primary btn-block btn-lg" type="button" id="autosavebutton">Autosave [OFF]</button></div>
                 </div>
@@ -172,6 +175,18 @@
                             general gist, I guess. Once you close this window it won't be in your way again thanks to the wonders of &nbsp; t e c h n o l o g y™. Have fun!</p>
                     </div>
                     <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="clearsave">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Warning</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                    <div class="modal-body">
+                        <p>HEY! YOU'RE ABOUT TO DELETE EVERYTHING! THIS WARNING IS HERE TO MAKE SURE YOUR HAND DOESN'T SLIP AND DESTROY THE UNIVERSE! ARE YOU SURE YOU WANT TO DO THIS?</p>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Nah</button><button class="btn btn-danger" type="button" id="confirmclear">Yes, Delete It All!</button></div>
                 </div>
             </div>
         </div>

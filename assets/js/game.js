@@ -134,6 +134,13 @@ function save(){
         update()
    }
     
+    $('#confirmclear').click(function(){
+        localStorage.removeItem("game")
+        localStorage.removeItem("upgrades")
+        localStorage.removeItem("autosave")
+        update()
+        location.reload()
+    })
     
     $('#load').click(function(){
 
@@ -168,7 +175,10 @@ function save(){
         $('#bps').html(numberformat.format(game.bps));
     }
     
-    
+    $('#clickarea').contextmenu(function() {
+    return false;
+});
+
     
     $('#click').mousedown(function(){
         game.bananas = game.bananas + game.bpc;
