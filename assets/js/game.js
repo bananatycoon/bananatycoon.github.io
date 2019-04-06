@@ -6,6 +6,8 @@ $(function(){
         bps: 0
     }
     
+    var autosave = false
+    
     var achievements = {
         first: false
     }
@@ -35,6 +37,11 @@ $(function(){
         raise: {
             cost: 600,
             count: 0
+        },
+        
+        factory: {
+            cost: 12500,
+            count: 0
         }
         
     }
@@ -58,15 +65,58 @@ $( ".card" ).hover(
   }
 ); 
     
-    $('#save').click(function(){
-        localStorage.setItem("game",JSON.stringify(game));
-        localStorage.setItem("upgrades",JSON.stringify(upgrades));
+function save(){
+    localStorage.setItem("game",JSON.stringify(game));
+    localStorage.setItem("upgrades",JSON.stringify(upgrades));
+    localStorage.setItem("autosave",JSON.stringify(autosave));
+    }
+    
+    //haha 69
+    
+    $('#autosavebutton').click(function(){
+
+        if (autosave === false) {
+            
+            autosave === true;
+
+        } else {
+            autosave === false;
+        }
+        
     })
     
+    setInterval(function(){ 
+        if (autosave === false) {
+            
+            $('#autosavebutton').html("Autosave [OFF]") 
+            $('#autosavebutton').removeClass("btn-primary")
+            $('#autosavebutton').addClass("btn-outline-primary")
+
+
+        } else {
+
+            $('#autosavebutton').html("Autosave [ON]")
+            $('#autosavebutton').removeClass("btn-outline-primary")
+            $('#autosavebutton').addClass("btn-primary")
+            
+        }
+    }, 1);
+    
+    $('#save').click(function(){
+        save()
+    })
+    
+    setInterval(function(){
+        if(autosave === true) {
+            save()
+            console.log("Saved!")
+        }
+    },5000)
     
    function load() {
         var savegame = JSON.parse(localStorage.getItem("game"));
         var saveupgrades = JSON.parse(localStorage.getItem("upgrades"));
+        var saveautosave = JSON.parse(localStorage.getItem("autosave"));
 
         if (typeof savegame.bananas !== "undefined") game.bananas = savegame.bananas;
         if (typeof savegame.bpc !== "undefined") game.bpc = savegame.bpc;
@@ -75,10 +125,11 @@ $( ".card" ).hover(
         if (typeof upgrades.fertilizer !== "undefined") upgrades.fertilizer = saveupgrades.fertilizer;
         if (typeof upgrades.enhancesoil !== "undefined") upgrades.enhancesoil = saveupgrades.enhancesoil;
         if (typeof upgrades.expandfarm !== "undefined") upgrades.expandfarm = saveupgrades.expandfarm;
+        if (typeof upgrades.factory !== "undefined") upgrades.factory = saveupgrades.factory;       
         if (typeof upgrades.shinytools !== "undefined") upgrades.shinytools = saveupgrades.shinytools;
         if (typeof upgrades.raise !== "undefined") upgrades.raise = saveupgrades.raise;
 
-        
+        if (typeof autosave !== "undefined") autosave = saveautosave;
         
         update()
    }
@@ -100,17 +151,21 @@ $( ".card" ).hover(
         $('#expand_cost').html(numberformat.format(upgrades.expandfarm.cost));        
         $('#shiny_cost').html(numberformat.format(upgrades.shinytools.cost));
         $('#raise_cost').html(numberformat.format(upgrades.raise.cost));
+        $('#factory_cost').html(numberformat.format(upgrades.factory.cost));
 
         $('#1_count').html(upgrades.fertilizer.count)
         $('#2_count').html(upgrades.enhancesoil.count)
         $('#3_count').html(upgrades.expandfarm.count)
+        $('#4_count').html(upgrades.factory.count)
 
         $('#c1_count').html(upgrades.shinytools.count)
         $('#c2_count').html(upgrades.raise.count)
 
         
-        $('#bpc').html(game.bpc);
-        $('#bps').html(Math.round(10*game.bps)/10);
+        $('#bpc').html(numberformat.format(game.bpc));
+        
+        
+        $('#bps').html(numberformat.format(game.bps));
     }
     
     
@@ -126,7 +181,7 @@ $( ".card" ).hover(
         if(game.bananas >= upgrades.fertilizer.cost) {
             game.bananas = game.bananas - upgrades.fertilizer.cost;
             upgrades.fertilizer.count = upgrades.fertilizer.count + 1;
-            game.bps = game.bps + .2
+            game.bps = game.bps + 1
             //Calculate New Cost
             upgrades.fertilizer.cost = Math.ceil(upgrades.fertilizer.cost*1.2);
             update()
@@ -152,10 +207,22 @@ $( ".card" ).hover(
             game.bps = game.bps + 50            
             //Calculate New Cost
             upgrades.expandfarm.cost =
-            Math.ceil(upgrades.expandfarm.cost*1.6)
+            Math.ceil(upgrades.expandfarm.cost*1.2)
             update()
         }
     })
+    
+    $('#bananafactory').click(function(){
+        if(game.bananas >= upgrades.factory.cost) {
+            game.bananas = game.bananas - upgrades.factory.cost;
+            upgrades.factory.count = upgrades.factory.count + 1;
+            game.bps = game.bps + 750            
+            //Calculate New Cost
+            upgrades.factory.cost =
+            Math.ceil(upgrades.factory.cost*1.2)
+            update()
+        }
+    })    
     
     $('#shinytools').click(function(){
     if(game.bananas >= upgrades.shinytools.cost) {
@@ -215,6 +282,12 @@ $( ".card" ).hover(
            $('#3_card').removeClass('bg-primary',500);
        }  
         
+       if(game.bananas >= upgrades.factory.cost) {
+           $('#4_card').addClass('bg-primary',500);
+       } else {
+           $('#4_card').removeClass('bg-primary',500);
+       }  
+        
         if(game.bananas >= upgrades.shinytools.cost) {
         $('#c1_card').addClass('bg-primary',500);
         } else {
@@ -249,12 +322,16 @@ $(document).on('mousemove', function(e){
     
     window.setInterval(function () {
     // Fertilizer adds 1 per second (1/100 every 10ms)
-    game.bananas += (upgrades.fertilizer.count * .2 / 100);
+    game.bananas += (upgrades.fertilizer.count * 1 / 100);
     update()
     // Soil Enhancements add 5 per second (5/100 every 10ms)
     game.bananas += (upgrades.enhancesoil.count * 5 / 100);
         
     // Farm Expansions add 50 per second (50/100 every 10ms)
-    game.bananas += (upgrades.expandfarm.count * 50/100);        
+    game.bananas += (upgrades.expandfarm.count * 50/100);    
+        
+    // Banana Factories add 750 per second (750/100 every 10ms)
+    game.bananas += (upgrades.factory.count * 750/100);        
+        
 }, 10);
 })

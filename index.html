@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col bg-light" id="generators" style="height: 50rem;/*border-radius: 25px;*/" data-simplebar="">
+            <div class="col bg-light" id="generators" style="height: 50rem;/*overflow-y: scroll;*//*border-radius: 25px;*/" data-simplebar="">
                 <div class="row">
                     <div class="col">
                         <h1 class="text-left">Generators</h1>
@@ -44,7 +44,7 @@
                                 <div class="card" id="1_card">
                                     <div class="card-body">
                                         <h4 class="card-title">Fertilizer</h4>
-                                        <h6 class="text-muted card-subtitle mb-2">+0.2 BPS</h6>
+                                        <h6 class="text-muted card-subtitle mb-2">+1 BPS</h6>
                                         <p class="card-text">Cost: <span id="fert_cost">10</span>&nbsp;Bananas</p>
                                         <p class="card-text">Count: <span id="1_count">0</span></p>
                                     </div>
@@ -71,6 +71,18 @@
                                         <h6 class="text-muted card-subtitle mb-2">+50.0 BPS</h6>
                                         <p class="card-text">Cost: <span id="expand_cost">1,500</span>&nbsp;Bananas</p>
                                         <p class="card-text">Count: <span id="3_count">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row upgrade" id="bananafactory" style="margin-top: 1rem;">
+                            <div class="col">
+                                <div class="card" id="4_card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Banana Factory</h4>
+                                        <h6 class="text-muted card-subtitle mb-2">+750.0 BPS</h6>
+                                        <p class="card-text">Cost: <span id="factory_cost">12,500</span>&nbsp;Bananas</p>
+                                        <p class="card-text">Count: <span id="4_count">0</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -130,6 +142,9 @@
                 </div>
                 <div class="row" id="loadrow">
                     <div class="col"><button class="btn btn-success btn-block btn-lg" type="button" id="load">Load</button></div>
+                </div>
+                <div class="row" id="autosaverow" style="display:none;">
+                    <div class="col"><button class="btn btn-outline-primary btn-block btn-lg" type="button" id="autosavebutton">Autosave [OFF]</button></div>
                 </div>
                 <div class="row" id="achievementrow">
                     <div class="col">
